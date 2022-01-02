@@ -12,4 +12,12 @@ def filter_df(df, word_list):
 #print(filter_df(jeopardy_df, ['King', 'England']).head(10))
 
 jeopardy_df['value_float'] = jeopardy_df.value.apply(lambda x: float(x[1:].replace(',', '')) if x != 'None' else 0)
-print(filter_df(jeopardy_df, ['King']).value_float.mean())
+#print(filter_df(jeopardy_df, ['King']).value_float.mean())
+#print(jeopardy_df.head())
+
+def answer_count(df):
+    return df.answer.value_counts()
+    #return df.groupby('answer').show_number.count().reset_index(name='count').sort_values(['count'], ascending=False)
+
+df_king = filter_df(jeopardy_df, ['King'])
+print(answer_count(df_king))
